@@ -12,6 +12,7 @@ gen
 **/*.xcodeproj/xcuserdata/*
 **/*.xcodeproj/project.xcworkspace/xcuserdata/*
 **/target
+/target
 *.iml
 project/*.ipr
 project/*.iml

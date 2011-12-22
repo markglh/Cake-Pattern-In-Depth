@@ -7,14 +7,16 @@ import org.specs2.mutable.Specification
 import org.specs2.mock.Mockito
 import com.cakepattern.services.DefaultUserServiceComponent
 import repository.UserRepositoryJPAComponent
+import org.junit.runner.RunWith
+import org.specs2.runner.JUnitRunner
 
 /**
  * @author markh
  */
-
+@RunWith(classOf[JUnitRunner])
 class UserServicesIntegrationTestSpecification extends Specification with Mockito {
 
-  trait MockEntitManager {
+  trait MockEntityManager {
     val em = mock[EntityManager]
 
     def expect(f: (EntityManager) => Any) {
@@ -27,7 +29,7 @@ class UserServicesIntegrationTestSpecification extends Specification with Mockit
     val users: java.util.List[User] = new ArrayList[User]()
     users.add(new User)
 
-    val userService = new DefaultUserServiceComponent with UserRepositoryJPAComponent with MockEntitManager
+    val userService = new DefaultUserServiceComponent with UserRepositoryJPAComponent with MockEntityManager
     userService.expect {
       em =>
         em.createQuery("from User", classOf[User]) returns query
